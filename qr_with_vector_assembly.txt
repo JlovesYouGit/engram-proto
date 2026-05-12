@@ -1,0 +1,15 @@
+QR Vector Assembly Instructions
+===============================
+
+Total parts: 2
+Total data size: 4284 characters
+
+Assembly order:
+1. qr_with_vector_part1.png
+2. qr_with_vector_part2.png
+
+To reconstruct:
+1. Scan all QR codes in order
+2. Remove 'CHUNK_X_Y:' prefixes
+3. Concatenate all base64 data
+4. Decode base64 to get original vector

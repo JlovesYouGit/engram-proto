@@ -1,0 +1,38 @@
+Working QR Reconstruction Guide
+========================================
+
+QR File: working_merged_qr.png
+
+What this QR contains:
+- Data hash: b917f02d9ce58f7afa253101a125d4ca7dd2ca9decee9e76acde4e2792f8cc01
+- Data size: 10168 bytes
+- Data type: merged_vectors
+- Source files: qr_vector_compressed.bin, qr_pattern.bin
+
+How to get the full data:
+1. Scan the QR code to get the JSON packet
+2. Extract the hash from the JSON
+3. Use the hash to verify the original data
+4. The original data is in 'merged_vectors.data'
+5. Verify the hash matches the original file
+
+Verification Python Code:
+import hashlib
+import json
+
+# Scan QR and get JSON
+scanned_json = '...'  # Your scanned data
+data = json.loads(scanned_json)
+expected_hash = data['hash']
+
+# Verify original data
+with open('merged_vectors.data', 'rb') as f:
+    original_data = f.read()
+
+actual_hash = hashlib.sha256(original_data).hexdigest()
+print(f'Hash matches: {actual_hash == expected_hash}')
+
+Data Components:
+- qr_vector_compressed.bin: 3212 bytes
+- qr_pattern.bin: 6956 bytes
+- Total merged: 10168 bytes

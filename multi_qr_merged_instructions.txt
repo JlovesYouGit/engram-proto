@@ -1,0 +1,35 @@
+Multi-QR Reconstruction Instructions
+==================================================
+
+QR File: multi_qr_merged.png
+QR Count: 6
+Total Data Size: 13560 characters
+
+To Reconstruct Merged Data:
+1. Scan all QR codes in order (1 to {qr_count})
+2. For each QR, copy the scanned text
+3. Remove the 'MERGED_X_Y:' prefix from each
+4. Concatenate all base64 data in order
+5. Decode the combined base64 to get binary data
+6. Save as 'reconstructed_merged.data'
+
+Python Reconstruction Code:
+import base64
+
+all_chunks = []
+for i in range(1, {qr_count} + 1):
+    with open(f'chunk_{{i}}.txt', 'r') as f:
+        chunk_data = f.read().strip()
+        # Remove prefix
+        chunk_data = chunk_data.split(':', 1)[1]
+        all_chunks.append(chunk_data)
+
+combined_data = ''.join(all_chunks)
+binary_data = base64.b64decode(combined_data)
+with open('reconstructed_merged.data', 'wb') as f:
+    f.write(binary_data)
+
+QR Features:
+- Purple corners: Merged vector data indicators
+- Red numbers: Chunk sequence (1/n)
+- High error correction: Reliable scanning

@@ -1,0 +1,14 @@
+Vector Data Reconstruction
+==============================
+
+Image file: merged_vectors.png
+Data file: merged_vectors.data
+Original files: qr_vector_compressed.bin, qr_pattern.bin
+Total size: 10168 bytes
+Data hash: 714e01d3c3e737d35f5b08b0e6caaf6c
+
+To reconstruct:
+1. Use the .data file for direct access
+2. Or scan the image for visual verification
+3. The image contains a hash-based visualization
+4. Purple corners indicate merged vector data
